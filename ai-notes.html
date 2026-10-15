@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Custom Notes Generator | CSS Prep Academy</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #f4f6f9; color: #222; line-height: 1.8; }
+        header { background-color: #0d233a; color: white; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+        header h1 { font-size: 1.5rem; }
+        nav a { color: white; text-decoration: none; margin-left: 15px; font-weight: bold; }
+        .container { max-width: 950px; margin: 2rem auto; padding: 0 1rem; }
+        .card { background: white; padding: 2.5rem; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); margin-bottom: 2rem; }
+        h2 { color: #0d233a; margin-bottom: 1rem; border-bottom: 3px solid #1e3a8a; padding-bottom: 8px; }
+        .topic-group { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; margin: 1.5rem 0; }
+        .topic-item { background: #f8fafc; padding: 12px 15px; border-radius: 6px; border: 1px solid #e2e8f0; display: flex; align-items: center; gap: 10px; cursor: pointer; font-weight: 500; }
+        .topic-item input { transform: scale(1.2); }
+        .api-input { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; margin-bottom: 1rem; font-size: 0.95rem; }
+        .btn-gen { background-color: #059669; color: white; border: none; padding: 14px 24px; font-size: 1.1rem; font-weight: bold; border-radius: 6px; cursor: pointer; width: 100%; transition: 0.3s; }
+        .btn-gen:hover { background-color: #047857; }
+        .output-box { background: white; padding: 2.5rem; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); display: none; margin-top: 2rem; }
+        .loading { display: none; text-align: center; font-weight: bold; color: #1e3a8a; margin: 1.5rem 0; font-size: 1.1rem; }
+        .flowchart-box { background: #eff6ff; border: 2px dashed #2563eb; padding: 1.2rem; border-radius: 8px; margin: 1.5rem 0; font-family: monospace; white-space: pre; overflow-x: auto; color: #1e3a8a; font-weight: bold; }
+        footer { background-color: #0d233a; color: white; text-align: center; padding: 1.5rem; margin-top: 3rem; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>CSS Prep Academy</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="pakistan-affairs.html">Pakistan Affairs</a>
+            <a href="ai-notes.html">AI Notes Generator</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <h2>Select Topics for Structured AI CSS Notes</h2>
+            <p>Select your desired topics. The AI will generate comprehensive, exam-ready notes complete with ASCII Flowcharts, Structured Headings, Quotes, and Past Paper references.</p>
+
+            <div class="topic-group">
+                <label class="topic-item"><input type="checkbox" value="Historical Evolution & Pre-1857 Revivalist Movements"> Pre-1857 Revivalist Movements</label>
+                <label class="topic-item"><input type="checkbox" value="War of Independence 1857 & Aftermath on Muslims"> 1857 War Impact & Revival</label>
+                <label class="topic-item"><input type="checkbox" value="Two-Nation Theory with Origin & Catalysts"> Two-Nation Theory (Do-Qoumi Nazriya)</label>
+                <label class="topic-item"><input type="checkbox" value="Sir Syed Ahmad Khan & Aligarh Movement Contribution"> Sir Syed Ahmad Khan & Aligarh</label>
+                <label class="topic-item"><input type="checkbox" value="Allama Muhammad Iqbal & Allahabad Address 1930"> Allama Iqbal & 1930 Address</label>
+                <label class="topic-item"><input type="checkbox" value="Quaid-e-Azam M. Ali Jinnah & Lahore Resolution 1940"> Quaid-e-Azam & Lahore Resolution</label>
+                <label class="topic-item"><input type="checkbox" value="Congress Rule (1937-1939) as Ideological Catalyst"> Congress Rule (1937-1939)</label>
+                <label class="topic-item"><input type="checkbox" value="CSS Past Paper Questions 2016-2026 Analysis"> CSS Past Papers (2016-2026)</label>
+            </div>
+
+            <input type="password" id="apiKey" class="api-input" placeholder="Paste your Gemini API Key here (AIzaSy...)">
+            <button class="btn-gen" onclick="generateNotes()">Generate Formatted Notes with Flowcharts</button>
+
+            <div id="loading" class="loading">⏳ Crafting detailed CSS notes, structure, and flowcharts... Please wait.</div>
+        </div>
+
+        <div id="output" class="output-box"></div>
+    </div>
+
+    <script>
+        async function generateNotes() {
+            const key = document.getElementById('apiKey').value.trim();
+            if (!key) {
+                alert('Please enter your Gemini API Key first!');
+                return;
+            }
+
+            const checkboxes = document.querySelectorAll('.topic-group input:checked');
+            if (checkboxes.length === 0) {
+                alert('Please select at least one topic!');
+                return;
+            }
+
+            let selectedTopics = [];
+            checkboxes.forEach(cb => selectedTopics.push(cb.value));
+
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('output').style.display = 'none';
+
+            const prompt = `Act as an elite CSS Pakistan Affairs Mentor & Examiner. Generate exhaustive, exam-oriented study notes on the selected topics: ${selectedTopics.join(', ')}.
+
+STRICT FORMATTING REQUIREMENTS:
+1. STRUCTURE & DEPTH: Provide detailed, 20-mark answer depth for each topic. Use clear Headings (H2, H3), bullet points, bold key terms, and primary historical dates.
+2. ASCII FLOWCHARTS & DIAGRAMS: Include clear visual ASCII flowcharts / structural diagrams for every major topic (e.g., Timeline diagram, Cause-and-Effect flowchart, Conceptual framework diagram). Wrap flowcharts in readable text boxes.
+3. QUOTATIONS: Include exact, bold primary quotes from Quaid-e-Azam, Allama Iqbal, or historical figures in highlighted format.
+4. CSS PAST PAPERS: At the end of each section, include exact CSS Past Paper questions (from 2016 to 2026) related to that topic.
+5. EXAM TIPS: Highlight potential CSS paper pitfalls, analytical dimensions, and examiner tips.`;
+
+            try {
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${key}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+                });
+
+                const data = await response.json();
+                
+                if (data.error) {
+                    alert('API Error: ' + data.error.message);
+                    document.getElementById('loading').style.display = 'none';
+                    return;
+                }
+
+                let text = data.candidates[0].content.parts[0].text;
+
+                let formattedText = text
+                    .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+                    .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                    .replace(/```([\s\S]*?)```/g, '<div class="flowchart-box">$1</div>');
+
+                document.getElementById('loading').style.display = 'none';
+                const outputBox = document.getElementById('output');
+                outputBox.innerHTML = formattedText;
+                outputBox.style.display = 'block';
+            } catch (error) {
+                document.getElementById('loading').style.display = 'none';
+                alert('Error generating notes. Please check your API Key or internet connection.');
+            }
+        }
+    </script>
+
+    <footer>
+        <p>&copy; 2026 CSS Prep Academy. Free Educational Resources for Students.</p>
+    </footer>
+
+</body>
+</html>
