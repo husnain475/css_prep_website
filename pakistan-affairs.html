@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pakistan Affairs - CSS Preparation</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: #f4f6f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #0d233a;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h1 {
+            font-size: 1.5rem;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+            font-weight: bold;
+        }
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .subject-header {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            border-left: 6px solid #1e3a8a;
+        }
+        .subject-header h2 {
+            color: #0d233a;
+            margin-bottom: 10px;
+        }
+        .chapters-list {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .chapters-list h3 {
+            margin-bottom: 1.5rem;
+            color: #0d233a;
+        }
+        .chapter-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .chapter-item:last-child {
+            border-bottom: none;
+        }
+        .btn-group {
+            display: flex;
+            gap: 8px;
+        }
+        .btn {
+            padding: 6px 14px;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+        .btn-notes {
+            background-color: #059669;
+        }
+        .btn-notes:hover {
+            background-color: #047857;
+        }
+        .btn-quiz {
+            background-color: #2563eb;
+        }
+        .btn-quiz:hover {
+            background-color: #1d4ed8;
+        }
+        footer {
+            background-color: #0d233a;
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>CSS Prep Academy</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="index.html#subjects">Subjects</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="subject-header">
+            <h2>Pakistan Affairs</h2>
+            <p>Complete topic-wise study notes, chapter-wise MCQs, and past paper analysis for CSS Pakistan Affairs.</p>
+        </div>
+
+        <div class="chapters-list">
+            <h3>Chapters & Syllabus Topics:</h3>
+            
+            <div class="chapter-item">
+                <div>
+                    <strong>Chapter 1: Ideology of Pakistan</strong>
+                    <p style="font-size:0.85rem; color:#666;">Two-Nation Theory, Sir Syed Ahmad Khan, Allama Iqbal, Quaid-e-Azam.</p>
+                </div>
+                <div class="btn-group">
+                    <a href="ideology-of-pakistan.html" class="btn btn-notes">Study Notes</a>
+                    <a href="#" class="btn btn-quiz">Start Quiz</a>
+                </div>
+            </div>
+
+            <div class="chapter-item">
+                <div>
+                    <strong>Chapter 2: Constitutional History (1947 - Present)</strong>
+                    <p style="font-size:0.85rem; color:#666;">1956, 1962, and 1973 Constitutions and Amendments.</p>
+                </div>
+                <div class="btn-group">
+                    <a href="#" class="btn btn-notes">Study Notes</a>
+                    <a href="#" class="btn btn-quiz">Start Quiz</a>
+                </div>
+            </div>
+
+            <div class="chapter-item">
+                <div>
+                    <strong>Chapter 3: Foreign Policy of Pakistan</strong>
+                    <p style="font-size:0.85rem; color:#666;">Relations with neighbors, major powers, and international organizations.</p>
+                </div>
+                <div class="btn-group">
+                    <a href="#" class="btn btn-notes">Study Notes</a>
+                    <a href="#" class="btn btn-quiz">Start Quiz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 CSS Prep Academy. Free Educational Resources for Students.</p>
+    </footer>
+
+</body>
+</html>
